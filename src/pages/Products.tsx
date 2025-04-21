@@ -6,7 +6,7 @@ const donateTiers = [
   {
     id: 1,
     title: "Админ 1 уровня",
-    price: 1000,
+    price: 100,
     description: "Базовый набор команд и привилегий для комфортной игры",
     features: [
       "Цветной ник в чате",
@@ -18,7 +18,7 @@ const donateTiers = [
   {
     id: 2,
     title: "Админ 2 уровня",
-    price: 1000,
+    price: 200,
     description: "Расширенный набор возможностей для активных игроков",
     features: [
       "Все возможности Админа 1 уровня",
@@ -30,7 +30,7 @@ const donateTiers = [
   {
     id: 3,
     title: "Админ 3 уровня",
-    price: 1000,
+    price: 500,
     description: "Продвинутые возможности и дополнительные команды",
     features: [
       "Все возможности Админа 2 уровня",
@@ -42,7 +42,7 @@ const donateTiers = [
   {
     id: 4,
     title: "Админ 4 уровня",
-    price: 2500,
+    price: 700,
     description: "Значительные привилегии для заядлых игроков",
     features: [
       "Все возможности Админа 3 уровня",
@@ -54,7 +54,7 @@ const donateTiers = [
   {
     id: 5,
     title: "Админ 5 уровня",
-    price: 2500,
+    price: 600,
     description: "Высокий уровень возможностей для приоритетных игроков",
     features: [
       "Все возможности Админа 4 уровня",
@@ -66,7 +66,7 @@ const donateTiers = [
   {
     id: 6,
     title: "Админ 6 уровня",
-    price: 2500,
+    price: 900,
     description: "Эксклюзивные возможности для избранных",
     features: [
       "Все возможности Админа 5 уровня",
@@ -76,12 +76,24 @@ const donateTiers = [
     ]
   },
   {
-    id: 8,
-    title: "Админ 8 уровня",
-    price: 5000,
-    description: "Премиум возможности с продвинутым контролем",
+    id: 7,
+    title: "Админ 7 уровня",
+    price: 1100,
+    description: "Высокий уровень контроля и модерации",
     features: [
       "Все возможности Админа 6 уровня",
+      "Команда /kick",
+      "Защита территории до 350x350",
+      "Особый цвет сообщений в чате"
+    ]
+  },
+  {
+    id: 8,
+    title: "Админ 8 уровня",
+    price: 1100,
+    description: "Премиум возможности с продвинутым контролем",
+    features: [
+      "Все возможности Админа 7 уровня",
       "Возможность мутить игроков",
       "Защита территории до 400x400",
       "Цветные сообщения в чате"
@@ -90,7 +102,7 @@ const donateTiers = [
   {
     id: 9,
     title: "Админ 9 уровня",
-    price: 5000,
+    price: 1300,
     description: "Высший уровень контроля и статуса",
     features: [
       "Все возможности Админа 8 уровня",
@@ -102,7 +114,7 @@ const donateTiers = [
   {
     id: 10,
     title: "Админ 10 уровня",
-    price: 5000,
+    price: 1523,
     description: "Почти полный контроль над игровым процессом",
     features: [
       "Все возможности Админа 9 уровня",
@@ -114,7 +126,7 @@ const donateTiers = [
   {
     id: 11,
     title: "Админ 11 уровня",
-    price: 5000,
+    price: 1900,
     description: "Предмаксимальный уровень полномочий",
     features: [
       "Все возможности Админа 10 уровня",
@@ -126,7 +138,7 @@ const donateTiers = [
   {
     id: 12,
     title: "Админ 12 уровня",
-    price: 5000,
+    price: 2121,
     description: "Максимальные возможности, доступные донатерам",
     features: [
       "Все возможности Админа 11 уровня",
@@ -138,7 +150,7 @@ const donateTiers = [
   {
     id: 13,
     title: "Владелец сервера",
-    price: 5000,
+    price: 6892,
     description: "Особый статус с расширенными полномочиями",
     features: [
       "Все возможности Админа 12 уровня",
@@ -150,7 +162,7 @@ const donateTiers = [
   {
     id: 14,
     title: "Основатель",
-    price: 5000,
+    price: 2702,
     description: "Наивысший статус с максимальными полномочиями",
     features: [
       "Все возможности Владельца сервера",
@@ -160,6 +172,13 @@ const donateTiers = [
     ]
   }
 ];
+
+// Группировка по ценовым диапазонам
+const priceTiers = {
+  tier1: donateTiers.filter(tier => tier.price <= 500),
+  tier2: donateTiers.filter(tier => tier.price > 500 && tier.price <= 1500),
+  tier3: donateTiers.filter(tier => tier.price > 1500)
+};
 
 const Products = () => {
   return (
@@ -177,32 +196,32 @@ const Products = () => {
       {/* Cards Grid */}
       <section className="py-20">
         <div className="container">
-          <Tabs defaultValue="1000" className="mb-12">
+          <Tabs defaultValue="tier1" className="mb-12">
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
-              <TabsTrigger value="1000">1000 ₽</TabsTrigger>
-              <TabsTrigger value="2500">2500 ₽</TabsTrigger>
-              <TabsTrigger value="5000">5000 ₽</TabsTrigger>
+              <TabsTrigger value="tier1">До 500 ₽</TabsTrigger>
+              <TabsTrigger value="tier2">500-1500 ₽</TabsTrigger>
+              <TabsTrigger value="tier3">От 1500 ₽</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="1000" className="mt-8">
+            <TabsContent value="tier1" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {donateTiers.filter(tier => tier.price === 1000).map((tier) => (
+                {priceTiers.tier1.map((tier) => (
                   <DonateCard key={tier.id} tier={tier} />
                 ))}
               </div>
             </TabsContent>
             
-            <TabsContent value="2500" className="mt-8">
+            <TabsContent value="tier2" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {donateTiers.filter(tier => tier.price === 2500).map((tier) => (
+                {priceTiers.tier2.map((tier) => (
                   <DonateCard key={tier.id} tier={tier} />
                 ))}
               </div>
             </TabsContent>
             
-            <TabsContent value="5000" className="mt-8">
+            <TabsContent value="tier3" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {donateTiers.filter(tier => tier.price === 5000).map((tier) => (
+                {priceTiers.tier3.map((tier) => (
                   <DonateCard key={tier.id} tier={tier} />
                 ))}
               </div>
@@ -254,12 +273,30 @@ interface DonateCardProps {
 }
 
 const DonateCard = ({ tier }: DonateCardProps) => {
+  // Функция для определения иконки в зависимости от уровня привилегии
+  const getIcon = (title: string) => {
+    if (title === "Основатель") return "👑";
+    if (title === "Владелец сервера") return "⭐";
+    if (title.includes("12")) return "🌟";
+    if (title.includes("11")) return "💎";
+    if (title.includes("10")) return "🔮";
+    if (title.includes("9")) return "🛡️";
+    if (title.includes("8")) return "🔱";
+    if (title.includes("7")) return "⚔️";
+    if (title.includes("6")) return "🏆";
+    if (title.includes("5")) return "🎖️";
+    if (title.includes("4")) return "🎯";
+    if (title.includes("3")) return "🔰";
+    if (title.includes("2")) return "🎮";
+    return "🎲";
+  };
+
   return (
     <Card className="overflow-hidden border border-border/50 hover:border-border hover:shadow-md transition-all">
       <CardHeader className="pb-0">
         <div className="h-24 -mx-6 -mt-6 mb-4 bg-accent flex items-center justify-center">
           <div className="text-4xl font-bold">
-            {tier.title === "Основатель" ? "👑" : tier.title === "Владелец сервера" ? "⭐" : "🛡️"}
+            {getIcon(tier.title)}
           </div>
         </div>
         <CardTitle className="text-2xl">{tier.title}</CardTitle>
