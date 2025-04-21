@@ -13,7 +13,8 @@ const donateTiers = [
       "Команда /tp",
       "Защита территории до 50x50",
       "Доступ к /kit admin1"
-    ]
+    ],
+    imageUrl: "https://cdn.poehali.dev/files/f79289a4-8d82-4949-9723-164e382b9ae7.jpg"
   },
   {
     id: 2,
@@ -269,6 +270,7 @@ interface DonateCardProps {
     price: number;
     description: string;
     features: string[];
+    imageUrl?: string;
   }
 }
 
@@ -294,11 +296,21 @@ const DonateCard = ({ tier }: DonateCardProps) => {
   return (
     <Card className="overflow-hidden border border-border/50 hover:border-border hover:shadow-md transition-all">
       <CardHeader className="pb-0">
-        <div className="h-24 -mx-6 -mt-6 mb-4 bg-accent flex items-center justify-center">
-          <div className="text-4xl font-bold">
-            {getIcon(tier.title)}
+        {tier.imageUrl ? (
+          <div className="h-48 -mx-6 -mt-6 mb-4 bg-black overflow-hidden">
+            <img 
+              src={tier.imageUrl} 
+              alt={tier.title} 
+              className="w-full h-full object-cover"
+            />
           </div>
-        </div>
+        ) : (
+          <div className="h-24 -mx-6 -mt-6 mb-4 bg-accent flex items-center justify-center">
+            <div className="text-4xl font-bold">
+              {getIcon(tier.title)}
+            </div>
+          </div>
+        )}
         <CardTitle className="text-2xl">{tier.title}</CardTitle>
         <CardDescription className="text-lg font-medium text-primary">
           {tier.price} ₽
